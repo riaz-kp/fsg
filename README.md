@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FSG website
 
-## Getting Started
+Public website for Fin Savvy Consultors LLP. Next.js 16 (App Router), React 19, TypeScript and Tailwind v4, with the same blue, charcoal and font as the CRM in `../crm`.
 
-First, run the development server:
+| Page | What it does |
+| --- | --- |
+| `/` | Services, how the work moves, the next due dates (live), documents and about |
+| `/services` | Each service area: what's included, what the client sends, its due dates |
+| `/due-dates` | Next 12 months of GST, TDS, income-tax and audit dates, filterable, downloadable as a calendar file |
+| `/documents` | Checklist per registration, with ticks remembered on the device and sharing to WhatsApp |
+| `/contact` | Enquiry form that opens WhatsApp (or email) with the enquiry typed in |
+
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+On this Mac, prefix `npm install` with `NODE_EXTRA_CA_CERTS=/etc/ssl/cert.pem` or it stalls on a certificate error.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Before going live
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Contact details** are placeholders in `src/lib/firm.ts`: phone, WhatsApp number, email, address and hours. Every page reads them from there. The WhatsApp number is where enquiries land.
+2. **Site address**: set `NEXT_PUBLIC_SITE_URL` (for example `https://finsavvy.in`) in the host's environment. It's used for the sitemap, canonical links and social previews.
+3. **Staff login**: set `crmUrl` in `src/lib/firm.ts` to show a link to the CRM in the footer.
 
-## Learn More
+## Keeping it current
 
-To learn more about Next.js, take a look at the following resources:
+- **Extended due dates**: when CBDT or the GST Council moves a date, add it to `DUE_DATE_CHANGES` in `src/lib/dueDates.ts` with the old and new date. It shows as "Extended" everywhere. Remove entries once they've passed.
+- **Due-date rules** themselves are in `RULES` in the same file.
+- **Services** text is in `src/lib/services.ts`; **document checklists** in `src/lib/documents.ts`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Hosting
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The home and due-dates pages are rebuilt every hour so the countdowns stay right, so host it somewhere that runs Next.js (Vercel, or `npm run build && npm start` on a Node server). A static export (`output: 'export'`) would freeze the dates at build time.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+There's no backend: enquiries go out through WhatsApp or email. When the CRM gets one, the enquiry form can post leads to it instead.

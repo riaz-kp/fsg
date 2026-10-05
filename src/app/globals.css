@@ -1,26 +1,137 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* FSG blue and charcoal, the same values the CRM samples from the logo */
+  --color-brand-50: #eef6fd;
+  --color-brand-100: #d9eafa;
+  --color-brand-200: #b5d6f5;
+  --color-brand-300: #85bcee;
+  --color-brand-400: #4f9de4;
+  --color-brand-500: #2484d8;
+  --color-brand-600: #186cbb;
+  --color-brand-700: #155798;
+  --color-brand-800: #15497c;
+  --color-brand-900: #143d66;
+  --color-brand-950: #0c2540;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-ink-50: #f6f7f9;
+  --color-ink-100: #eceef1;
+  --color-ink-200: #dde0e5;
+  --color-ink-300: #c3c8cf;
+  --color-ink-400: #959ca6;
+  --color-ink-500: #6b727c;
+  --color-ink-600: #51565f;
+  --color-ink-700: #3e4249;
+  --color-ink-800: #2a2d32;
+  --color-ink-900: #1b1d21;
+
+  /* One colour per kind of work, as in the CRM's departments */
+  --color-gst: #186cbb;
+  --color-gst-soft: #eaf3fc;
+  --color-tds: #6a3dbd;
+  --color-tds-soft: #f2edfb;
+  --color-it: #0b7467;
+  --color-it-soft: #e5f5f2;
+  --color-audit: #94560a;
+  --color-audit-soft: #fcf1df;
+
+  --color-wa: #15803d;
+  --color-wa-dark: #11692f;
+
+  --shadow-card: 0 1px 2px rgb(27 29 33 / 0.04), 0 4px 16px -8px rgb(27 29 33 / 0.1);
+  --shadow-lift: 0 30px 60px -28px rgb(20 61 102 / 0.35), 0 2px 6px rgb(27 29 33 / 0.05);
+
+  --animate-rise: rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* The page column: 16px gutters on phones, wider on bigger screens */
+@utility shell {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* The squared grid from the logo's "S", used as a faint backdrop */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line, rgb(36 132 216 / 0.09)) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line, rgb(36 132 216 / 0.09)) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white font-sans text-ink-700 antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-ink-900;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  button,
+  summary,
+  [role='button'] {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--color-brand-100);
+    color: var(--color-brand-900);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    font-size: 12pt;
+  }
 }
