@@ -80,15 +80,6 @@ export default function Home() {
                 <ArrowRight className="size-4" aria-hidden />
               </ButtonLink>
             </div>
-            <div className="mt-10 flex flex-wrap items-center gap-2 text-[14px]">
-              <span className="mr-1 text-ink-500">We work from what you have:</span>
-              {['Bills', 'Tally backup', 'Excel sheet'].map((f) => (
-                <span key={f} className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 font-semibold text-ink-700 ring-1 ring-ink-200">
-                  <Check className="size-3.5 text-wa" strokeWidth={3} aria-hidden />
-                  {f}
-                </span>
-              ))}
-            </div>
           </div>
 
           <div className="relative animate-rise [animation-delay:120ms]">

@@ -21,7 +21,7 @@ On this Mac, prefix `npm install` with `NODE_EXTRA_CA_CERTS=/etc/ssl/cert.pem` o
 
 ## Before going live
 
-1. **Contact details** are placeholders in `src/lib/firm.ts`: phone, WhatsApp number, email, address and hours. Every page reads them from there. The WhatsApp number is where enquiries land.
+1. **Contact details** live in `src/lib/firm.ts` and every page reads them from there. The WhatsApp number is where enquiries land. Office hours are empty, so the contact page doesn't show them; fill `hours` to add them.
 2. **Site address**: set `NEXT_PUBLIC_SITE_URL` (for example `https://finsavvy.in`) in the host's environment. It's used for the sitemap, canonical links and social previews.
 3. **Staff login**: set `crmUrl` in `src/lib/firm.ts` to show a link to the CRM in the footer.
 

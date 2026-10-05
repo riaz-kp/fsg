@@ -1,7 +1,5 @@
 /**
  * Everything about the firm that the pages show, in one place.
- *
- * The contact details are placeholders. Replace them before the site goes live.
  */
 export const FIRM = {
   name: 'Fin Savvy Consultors LLP',
@@ -10,13 +8,14 @@ export const FIRM = {
   teamSize: 13,
 
   /** Office number for "Call" links. Include the country code. */
-  phone: '+91 00000 00000',
+  phone: '+91 9048002106',
   /** Number that receives website enquiries on WhatsApp. Include the country code. */
-  whatsapp: '+91 00000 00000',
-  email: 'info@example.com',
+  whatsapp: '+91 9048002106',
+  email: 'finsavvyconsultorsllp@gmail.com',
   /** One line per entry. */
-  address: ['Office address, line 1', 'City, District, State PIN'],
-  hours: 'Monday to Saturday',
+  address: ['SS Complex, 1st Floor', 'Areekode, Ugrapuram', 'Malappuram, Kerala - 673639', 'Opposite of Aster Mother Hospital'],
+  /** Office hours. Empty hides the row on the contact page. */
+  hours: '',
   /** Google Maps link to the office. Empty hides "Get directions". */
   mapUrl: '',
   /** The practice manager (CRM). Empty hides "Staff login" in the footer. */

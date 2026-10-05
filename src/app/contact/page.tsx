@@ -75,6 +75,7 @@ export default function ContactPage() {
                   )}
                 </span>
               </li>
+              {FIRM.hours && (
               <li className="flex gap-3.5 py-3.5">
                 <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-600">
                   <Clock className="size-5" aria-hidden />
@@ -84,6 +85,7 @@ export default function ContactPage() {
                   <span className="font-semibold text-ink-900">{FIRM.hours}</span>
                 </span>
               </li>
+              )}
             </ul>
           </div>
 
